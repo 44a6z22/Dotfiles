@@ -135,7 +135,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 #hiding that egde indicator
 hide_edge_borders both
-
+# bar
 # bar
 bar {
 	position top
@@ -149,6 +149,7 @@ bar {
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 }
+#	exec_always --no-startup-id ~/.config/polybar/launch.sh 
 
 
 # Pulse Audio controls
@@ -173,7 +174,7 @@ bar {
 
 
 # Var .. 
-       set $image ~/Downloads/40.jpg
+       set $image ~/Downloads/40.png
        set $outer 12
        set $inner 10
        
@@ -181,7 +182,7 @@ bar {
        exec --no-startup-id firefox
        exec --no-startup-id spotify
        exec --no-startup-id pulseaudio
-       
+       exec --no-startup-id xautolock -time 1 -locker 'home/mz/.config/is/lock.sh'
 #background  Picture
        exec_always --no-startup-id feh --bg-scale $image
        
@@ -192,33 +193,37 @@ bar {
 	assign [class="Emacs24"] $workspace2
 	assign [class="Firefox"] $workspace1
 	assign [class="Zeal"] $workspace4
+	assign [class="Okular"] $workspace3 
 	assign [class="TelegramDesktop"] $workspace9	
 	assign [class="Google-chrome"] $workspace5
 	for_window [class="Spotify"] move to workspace $workspace10
 	assign [class="discord"] $workspace9
+	assign [class="Sublime_text"] $workspace2
 	
 # Media player controls
   	bindsym XF86AudioPlay exec playerctl play
 	bindsym XF86AudioPause exec playerctl pause
 	bindsym XF86AudioNext exec playerctl next
 	bindsym XF86AudioPrev exec playerctl previous
-
-# Key bindings
+	
+# program binds 
 	bindsym $mod+ctrl+f exec firefox
 	bindsym $mod+Return exec urxvt
-	bindsym $mod+ctrl+e exec emacs
+	bindsym $mod+ctrl+e exec emacs 
 	bindsym $mod+ctrl+c exec google-chrome
-	bindsym $mod+ctrl+s exec spotify
+	bindsym $mod+ctrl+s exec subl
 	bindsym $mod+ctrl+z exec zeal
 	bindsym $mod+ctrl+t exec telegram-desktop
 	bindsym $mod+Shift+a kill
-	bindsym $mod+ctrl+p exec i3lock --color "17202e"
+	bindsym $mod+Shift+p exec okular "Desktop/Structure-Donnees.pdf"
+	#bindsym $mod+ctrl+p exec i3lock -c "17120a"
 	bindsym $mod+ctrl+d exec discord
+	bindsym $mod+ctrl+p exec slock
 
 # start Rofi (a program launcher)
   	bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 300 -opacity "65" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "$bg-color" -font "fontawesome Display 17"
 
-# Enabling i3-Gaps
+# i3-Gaps
   	   gaps inner $inner
 	   gaps outer $outer
 	   
@@ -227,5 +232,5 @@ bar {
 	   bindsym $mod+Ctrl+g exec pkill compton; gaps inner all set 0; gaps outer all set 0
 	   
 # SCREENSHOT
-           bindsym --release $mod+ctrl+n exec scrot -e 'mv $f ~/Pictures/screenshots'
-	   bindsym --release $mod+Ctrl+Print exec scrot -s -e 'mv $f ~/Pictures/screenshots'
+           bindsym --release $mod+ctrl+n exec scrot -e 'mv $f ~/Pictures/screenshots/23.png'
+	 
